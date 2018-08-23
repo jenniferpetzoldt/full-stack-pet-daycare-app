@@ -35,7 +35,7 @@ router.post('/', function (req, res) {
 router.delete('/:id', function (req, res) {
     console.log('In owner DELETE route');
     const id = req.params.id;
-    const query = `DELETE FROM "pets" WHERE "id" = ($1);`;
+    const query = `DELETE FROM "owners" WHERE "id" = ($1);`;
     pool.query(query, [id])
         .then((results) => {
             console.log(results);

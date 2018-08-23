@@ -41,6 +41,7 @@ myApp.controller('OwnersController', function ($http) {
             url: '/owners/' + id
         }).then(function(response){
             console.log('/owners DELETE success:', response);
+            getOwners();
         }).catch(function(error){
             console.log('/owners DELETE error:', error);
             alert('unable to delete owner');
