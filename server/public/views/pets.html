@@ -20,18 +20,18 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            <tr>
+            <tr ng-repeat="pet in pc.pets">
                 <td>
                     <!-- owner name -->
                 </td>
                 <td>
-                    <!-- pet name -->
+                    {{pet.name}}
                 </td>
                 <td>
-                    <!-- breed -->
+                    {{pet.breed}}
                 </td>
                 <td>
-                    <!-- Color -->
+                    {{pet.color}}
                 </td>
                 <td>
                     <!-- Checked In -->

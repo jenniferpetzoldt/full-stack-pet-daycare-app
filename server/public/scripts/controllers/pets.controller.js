@@ -1,10 +1,18 @@
 myApp.controller('PetsController', function($http){
     const vm = this;
     console.log('NG in pets');
+    vm.pets = [];
 
-   function getPets(){
+    function getPets(){
+        console.log('in getPets');
        $http({
            method: 'GET',
+           url: '/pets'
+       }).then(function(response){
+           console.log('/pets GET success:', response);
+       }).catch(function(error){
+           console.log('/pets GET error:', error);
+           alert('unable to get pets');
        })
    }
    
