@@ -3,6 +3,7 @@ myApp.controller('PetsController', function($http){
     console.log('NG in pets');
     vm.pets = [];
 
+    //GET route to pull pets from the pets table within the database
     function getPets(){
         console.log('in getPets');
        $http({
@@ -16,7 +17,7 @@ myApp.controller('PetsController', function($http){
        })
    }
    
-    //POST route to add pets to pets table in database
+    //POST route to add pets to pets table within the database
     vm.addToPets = function(petToAdd) {
         console.log('in addToPets');
         $http({
@@ -32,4 +33,5 @@ myApp.controller('PetsController', function($http){
     };// end POST route
     
 
+getPets();    
 });// end PetsController
