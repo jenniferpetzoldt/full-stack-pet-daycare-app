@@ -1,8 +1,9 @@
 myApp.controller('PetsController', function ($http) {
     const vm = this;
-    console.log('NG in pets');
+    
     vm.pets = [];
-
+    getPets();
+    
     //GET route to pull pets from the pets table within the database
     function getPets() {
         console.log('in getPets');
@@ -27,7 +28,7 @@ myApp.controller('PetsController', function ($http) {
             data: petToAdd
         }).then(function (response) {
             console.log('/pets POST success:', response);
-            getPets();
+            getPets();// will update the view with current pet information in database
         }).catch(function (error) {
             console.log('/pets POST error:', error);
             alert('unable to add pet');
@@ -42,12 +43,11 @@ myApp.controller('PetsController', function ($http) {
             url: '/pets/' + id //the pet with matching id will be deleted from database
         }).then(function(response){
             console.log('/pets DELETE success:', response);
-            getPets();
+            getPets();// will update the view with current pet information in database
         }).catch(function(error){
             console.log('/pets DELETE error:', error);
             alert('unable to delete pet');
         });
     };//end DELETE route
 
-    getPets();
 });// end PetsController
