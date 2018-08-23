@@ -14,10 +14,22 @@ router.get('/', function(req,res){
         console.log('Error in owner GET', error);
         res.sendStatus(500);
     });
-});
+});// End GET route
 
 
 //POST
+router.post('/', function (req, res){
+    const ownerToAdd = req.body;
+    console.log('In owner POST route:', req.body);
+    const query = `INSERT INTO "owners" ("name") VALUES ($1);`;
+    pool.query(query, [ownerToAdd.name])
+    .then(()=>{
+        res.sendStatus(201);
+    }).catch((error)=>{
+        console.log('Error in owner POST', error);
+        res.sendStatus(500);
+    });
+});// End POST route
 
 //DELETE
 
