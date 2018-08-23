@@ -35,12 +35,11 @@ myApp.controller('PetsController', function ($http) {
     };// end POST route
 
     //DELETE route to remove a pet from the pets table within the database
-    vm.deletePet = function(petToDelete) {
+    vm.deletePet = function(id) {
         console.log('in deletePet');
         $http({
             method: 'DELETE',
-            url: '/pets',
-            data: petToDelete
+            url: '/pets/' + id //the pet with matching id will be deleted from database
         }).then(function(response){
             console.log('/pets DELETE success:', response);
             getPets();
