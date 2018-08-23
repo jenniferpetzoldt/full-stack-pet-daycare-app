@@ -18,4 +18,19 @@ myApp.controller('OwnersController', function ($http) {
         });
     };// end getOwners
 
+    //POST route to add owner data to database
+    vm.addToOwners = function(ownerToAdd) {
+        $http({
+            method: 'POST',
+            url: '/owners',
+            data: ownerToAdd
+        }).then(function(response){
+            console.log('/owner POST success:', response);
+            getOwners(); //updates the owner view with current owner information
+        }).catch(function(error){
+            console.log('/owners POST error:', error);
+            alert('unable to add owner');
+        });
+    };// end POST route
+
 });// end OwnersController
