@@ -32,5 +32,18 @@ router.post('/', function (req, res){
 });// End POST route
 
 //DELETE
+router.delete('/:id', function(req, res){
+    console.log('In owner DELETE route');
+    const id = req.params.id;
+    const query = `DELETE FROM "pets" WHERE "id" = ($1);`;
+    pool.query(query, [id])
+    .then((results)=>{
+        console.log(results);
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error with owner DELETE:', error);
+        res.sendStatus(500);
+    });
+});//end DELETE route
 
 module.exports = router;
