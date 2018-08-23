@@ -15,22 +15,36 @@ myApp.controller('OwnersController', function ($http) {
         }).catch(function (error) {
             console.log('error getting owners:', error);
             alert('Error retrieving owners from server.');
-        });
+        });// end GET route
     };// end getOwners
 
     //POST route to add owner data to database
-    vm.addToOwners = function(ownerToAdd) {
+    vm.addToOwners = function (ownerToAdd) {
         $http({
             method: 'POST',
             url: '/owners',
             data: ownerToAdd
-        }).then(function(response){
+        }).then(function (response) {
             console.log('/owner POST success:', response);
             getOwners(); //updates the owner view with current owner information
-        }).catch(function(error){
+        }).catch(function (error) {
             console.log('/owners POST error:', error);
             alert('unable to add owner');
-        });
-    };// end POST route
+        });// end POST route
+    };// end addToOwners
+
+    //DELETE route to remove an owner from the owners table within the databse
+    vm.deleteOwner = function (id) {
+        console.log('in delete owner');
+        $http({
+            method: 'DELETE',
+            url: '/owners/' + id
+        }).then(function(response){
+            console.log('/owners DELETE success:', response);
+        }).catch(function(error){
+            console.log('/owners DELETE error:', error);
+            alert('unable to delete owner');
+        });//end DELETE route
+    }//end deleteOwner
 
 });// end OwnersController
