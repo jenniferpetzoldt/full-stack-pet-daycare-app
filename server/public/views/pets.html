@@ -1,9 +1,9 @@
 <div>
     <h2>Add Pet</h2>
-    <form>
-        <input type="text" placeholder="Pet Name">
-        <input type="text" placeholder="Pet Color">
-        <input type="text" placeholder="Pet Breed">
+    <form ng-submit="pc.addToPets(pc.petToAdd)">
+        <input type="text" placeholder="Pet Name" ng-model="pc.petToAdd.name">
+        <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
+        <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
         <select name="Owner Name" id="owner-dropdown"></select>
         <input type="submit" value="submit">
     </form>

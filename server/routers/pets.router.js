@@ -10,8 +10,8 @@ const pool = require('../modules/pool.js');
 //POST route
 router.post('/', function(req, res){
     const petToAdd = req.body;
-    console.log ('In pet POST route: ', petToAdd);
-    const query = `INSERT INTO "pets" ("name", "color", "breed") VALUES ($1, $2);`;
+    console.log ('In pet POST route: ', req.body);
+    const query = `INSERT INTO "pets" ("name", "color", "breed") VALUES ($1, $2, $3);`;
     pool.query(query, [petToAdd.name, petToAdd.color, petToAdd.breed])
     .then(()=>{
         res.sendStatus(201);

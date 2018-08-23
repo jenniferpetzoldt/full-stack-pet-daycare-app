@@ -9,12 +9,12 @@ myApp.controller('PetsController', function($http){
    }
    
     //POST route to add pets to pets table in database
-    vm.addToPets = function(pet) {
+    vm.addToPets = function(petToAdd) {
         console.log('in addToPets');
         $http({
             method: 'POST',
             url: '/pets',
-            data: {name: name, color: color, breed: breed}
+            data: petToAdd
         }).then(function(response){
             console.log('/pets POST success:', response);
         }).catch(function (error){
