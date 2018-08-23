@@ -15,9 +15,9 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            <tr>
+            <tr ng-repeat="owner in oc.owners">
                 <td>
-                    <!-- owner name -->
+                    {{owner.name}}
                 </td>
                 <td>
                     <!-- number of pets -->

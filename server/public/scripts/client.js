@@ -10,7 +10,7 @@ myApp.config(function($routeProvider){
         controller: 'PetsController as pc'
     }).when('/owners', {
         templateUrl: 'views/owners.html',
-        controller: 'OwnersController as lc'
+        controller: 'OwnersController as oc'
     }).otherwise({
         templateUrl: 'views/404.html'
     });

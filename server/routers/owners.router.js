@@ -9,6 +9,7 @@ router.get('/', function(req,res){
     const query = 'SELECT * FROM "owners";';
     pool.query(query).then((results)=>{
         console.log('owners GET results', results.rows);
+        res.send(results.rows);
     }).catch((error)=>{
         console.log('Error in owner GET', error);
         res.sendStatus(500);
