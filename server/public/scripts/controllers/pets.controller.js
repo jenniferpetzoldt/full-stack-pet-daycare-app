@@ -10,7 +10,8 @@ myApp.controller('PetsController', function($http){
            method: 'GET',
            url: '/pets'
        }).then(function(response){
-           console.log('/pets GET success:', response);
+           console.log('/pets GET success:', response.data);
+           vm.pets = response.data;
        }).catch(function(error){
            console.log('/pets GET error:', error);
            alert('unable to get pets');

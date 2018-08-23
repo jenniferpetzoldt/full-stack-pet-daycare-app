@@ -8,7 +8,7 @@ router.get('/', function(req, res){
     console.log('in pet GET route');
     const query = 'SELECT * FROM "pets";';
     pool.query(query).then((results)=>{
-        console.log('pets GET results', results);
+        console.log('pets GET results', results.rows);
         res.send(results.rows);
     }).catch((error)=>{
         console.log('Error in pet GET', error);
