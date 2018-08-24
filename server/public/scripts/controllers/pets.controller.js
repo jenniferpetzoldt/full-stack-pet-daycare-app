@@ -70,4 +70,29 @@ myApp.controller('PetsController', function ($http) {
         });//end DELETE route
     };//end deletePet
 
+vm.showCheckIn = function(id){
+    console.log('update pet to checked in', id);
+    let data = {check_in: true};
+    $http.put('/pets/' + id, data)
+    .then(function(response){
+        getPets();
+    }).catch(function(error){
+        console.log('/pets UPDATE error:', error);
+        alert('unable to update pet to checked in');
+    });
+};
+
+vm.hideCheckIn = function(id){
+    console.log('update pet to checked out', id);
+    let data = {check_in: false};
+    $http.put('/pets/' + id, data)
+    .then(function(response){
+        getPets();
+    }).catch(function(error){
+        console.log('/pets UPDATE error:', error);
+        alert('unable to update pet to checked in');
+    });
+}
+
+
 });// end PetsController

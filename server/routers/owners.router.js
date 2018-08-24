@@ -6,7 +6,9 @@ const pool = require('../modules/pool.js');
 //GET
 router.get('/', function (req, res) {
     console.log('in owner GET route');
-    const query = `SELECT "owners"."name", COUNT("pets"."owner_id") FROM "owners" LEFT JOIN "pets" ON "owners"."id" = "pets"."owner_id" GROUP BY "owners"."name";`;
+    const query = `SELECT "owners"."id", "owners"."name", COUNT("pets"."owner_id") 
+                    FROM "owners" LEFT JOIN "pets" ON "owners"."id" = "pets"."owner_id" 
+                    GROUP BY "owners"."id";`;
     pool.query(query).then((results) => {
         console.log('owners GET results', results.rows);
         res.send(results.rows);
@@ -33,9 +35,11 @@ router.post('/', function (req, res) {
 
 //DELETE
 router.delete('/:id', function (req, res) {
-    console.log('In owner DELETE route');
+    console.log('In owner DELETE route', req.params.id);
     const id = req.params.id;
-    const query = `DELETE FROM "owners" WHERE "id" = ($1);`;
+    const query = ` DELETE FROM "owners" WHERE "id" = ($1);`;
+
+                    // DELETE FROM "pets" WHERE "pets"."owner_id" =($1);
     pool.query(query, [id])
         .then((results) => {
             console.log(results);

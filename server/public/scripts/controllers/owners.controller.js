@@ -36,6 +36,7 @@ myApp.controller('OwnersController', function ($http) {
     //DELETE route to remove an owner from the owners table within the databse
     vm.deleteOwner = function (id) {
         console.log('in delete owner');
+        //add warning about deleting and owner with pets listed
         $http({
             method: 'DELETE',
             url: '/owners/' + id
@@ -44,7 +45,7 @@ myApp.controller('OwnersController', function ($http) {
             getOwners();
         }).catch(function(error){
             console.log('/owners DELETE error:', error);
-            alert('unable to delete owner');
+            alert('This owner has pets and should not be deleted.');
         });//end DELETE route
     }//end deleteOwner
 

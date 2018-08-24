@@ -26,24 +26,24 @@
         <tbody>
             <tr ng-repeat="pet in pc.pets">
                 <td>
-                    {{}}
+                    {{pet.owner_name}}
                 </td>
                 <td>
-                    {{pet.name}}
+                    {{pet.pet_name}}
                 </td>
                 <td>
-                    {{pet.breed}}
+                    {{pet.pet_breed}}
                 </td>
                 <td>
-                    {{pet.color}}
+                    {{pet.pet_color}}
                 </td>
                 <td>
-                    <!-- checked in -->
+                    {{pet.check_in}}
                 </td>
                 <td>
                     <button ng-click="pc.deletePet(pet.id)">Delete</button>
-                    <button>Check In</button>
-                    <button>Check Out</button>
+                    <button ng-click="pc.showCheckIn(pet.id)">Check In</button>
+                    <button ng-click="pc.hideCheckIn(pet.id)">Check Out</button>
                 </td>
             </tr>
         </tbody>
