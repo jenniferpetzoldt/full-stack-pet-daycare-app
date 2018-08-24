@@ -4,9 +4,11 @@
         <input type="text" placeholder="Pet Name" ng-model="pc.petToAdd.name">
         <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
         <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
-        <!-- figure out how to pull in owner name and id information  -->
-        <!-- write a second GET to pull the owner information -->
-        <select name="Owner Name" id="owner-dropdown" ng-model="pc.petToAdd.owner_id" ng-options="x for x in pc.owners.name"></select>
+        <select ng-model="pc.petToAdd.owner_id">
+           <!-- adds blank option above pet owners names -->
+            <option></option> 
+            <option ng-repeat="x in pc.owners" value="{{x.id}}">{{x.name}}</option>
+        </select>
         <input type="submit" value="submit">
     </form>
 </div>
@@ -24,7 +26,7 @@
         <tbody>
             <tr ng-repeat="pet in pc.pets">
                 <td>
-                    <!-- owner name -->
+                    {{}}
                 </td>
                 <td>
                     {{pet.name}}

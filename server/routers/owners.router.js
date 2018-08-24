@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 //GET
 router.get('/', function (req, res) {
     console.log('in owner GET route');
-    const query = 'SELECT * FROM "owners";';
+    const query = `SELECT "owners"."name", COUNT("pets"."owner_id") FROM "owners" LEFT JOIN "pets" ON "owners"."id" = "pets"."owner_id" GROUP BY "owners"."name";`;
     pool.query(query).then((results) => {
         console.log('owners GET results', results.rows);
         res.send(results.rows);

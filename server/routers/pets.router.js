@@ -16,6 +16,19 @@ router.get('/', function (req, res) {
     });
 });// end GET route
 
+//GET
+router.get('/owners', function (req, res) {
+    console.log('in owner GET route');
+    const query = 'SELECT * FROM "owners";';
+    pool.query(query).then((results) => {
+        console.log('owners GET results', results.rows);
+        res.send(results.rows);
+    }).catch((error) => {
+        console.log('Error in owner GET', error);
+        res.sendStatus(500);
+    });
+});// End GET route
+
 //DELETE route to remoeve a pet from the pets table within the database
 router.delete('/:id', function (req, res) {
     console.log('In pet DELETE route');
@@ -35,8 +48,8 @@ router.delete('/:id', function (req, res) {
 router.post('/', function (req, res) {
     const petToAdd = req.body;
     console.log('In pet POST route: ', req.body);
-    const query = `INSERT INTO "pets" ("name", "color", "breed") VALUES ($1, $2, $3);`;
-    pool.query(query, [petToAdd.name, petToAdd.color, petToAdd.breed])
+    const query = `INSERT INTO "pets" ("name", "color", "breed", "owner_id") VALUES ($1, $2, $3, $4);`;
+    pool.query(query, [petToAdd.name, petToAdd.color, petToAdd.breed, petToAdd.owner_id])
         .then(() => {
             res.sendStatus(201);
         }).catch((error) => {

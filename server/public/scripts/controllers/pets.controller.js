@@ -2,7 +2,10 @@ myApp.controller('PetsController', function ($http) {
     const vm = this;
 
     vm.pets = [];
+    vm.owners = [];
+    
     getPets();
+    getOwners();
 
     //GET route to pull pets from the pets table within the database
     function getPets() {
@@ -19,6 +22,21 @@ myApp.controller('PetsController', function ($http) {
         });// end GET route
     };// end getPets
 
+     //GET route to server to retieve owner data from database
+     function getOwners() {
+        console.log('in getOwners');
+        $http({
+            method: 'GET',
+            url: '/pets/owners'
+        }).then(function (response) {
+            console.log('back from server with: owners', response.data)
+            vm.owners = response.data;
+        }).catch(function (error) {
+            console.log('error getting owners:', error);
+            alert('Error retrieving owners from server.');
+        });// end GET route
+    };// end getOwners
+
     //POST route to add pets to pets table within the database
     vm.addToPets = function (petToAdd) {
         console.log('in addToPets');
@@ -29,6 +47,7 @@ myApp.controller('PetsController', function ($http) {
         }).then(function (response) {
             console.log('/pets POST success:', response);
             getPets();// will update the view with current pet information in database
+            getOwners();
         }).catch(function (error) {
             console.log('/pets POST error:', error);
             alert('unable to add pet');
@@ -44,6 +63,7 @@ myApp.controller('PetsController', function ($http) {
         }).then(function (response) {
             console.log('/pets DELETE success:', response);
             getPets();// will update the view with current pet information in database
+            getOwners();
         }).catch(function (error) {
             console.log('/pets DELETE error:', error);
             alert('unable to delete pet');
