@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 //GET route to pull pet data from the pets table within the database
 router.get('/', function (req, res) {
     console.log('in pet GET route');
-    const query = `SELECT "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed" as "pet_breed", 
+    const query = `SELECT  "pets"."id", "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed" as "pet_breed", 
                     "pets"."color" as "pet_color", "pets"."check_in" 
                     FROM "owners" JOIN "pets"  
                     ON "owners"."id" = "pets"."owner_id";`;

@@ -3,7 +3,7 @@ myApp.controller('PetsController', function ($http) {
 
     vm.pets = [];
     vm.owners = [];
-    
+
     getPets();
     getOwners();
 
@@ -22,8 +22,8 @@ myApp.controller('PetsController', function ($http) {
         });// end GET route
     };// end getPets
 
-     //GET route to server to retieve owner data from database
-     function getOwners() {
+    //GET route to server to retieve owner data from database
+    function getOwners() {
         console.log('in getOwners');
         $http({
             method: 'GET',
@@ -56,7 +56,7 @@ myApp.controller('PetsController', function ($http) {
 
     //DELETE route to remove a pet from the pets table within the database
     vm.deletePet = function (id) {
-        console.log('in deletePet');
+        console.log('in deletePet', id);
         $http({
             method: 'DELETE',
             url: '/pets/' + id //the pet with matching id will be deleted from database
@@ -70,29 +70,29 @@ myApp.controller('PetsController', function ($http) {
         });//end DELETE route
     };//end deletePet
 
-vm.showCheckIn = function(id){
-    console.log('update pet to checked in', id);
-    let data = {check_in: true};
-    $http.put('/pets/' + id, data)
-    .then(function(response){
-        getPets();
-    }).catch(function(error){
-        console.log('/pets UPDATE error:', error);
-        alert('unable to update pet to checked in');
-    });
-};
+    vm.showCheckIn = function (id) {
+        console.log('update pet to checked in', id);
+        let data = { check_in: true };
+        $http.put('/pets/' + id, data)
+            .then(function (response) {
+                getPets();
+            }).catch(function (error) {
+                console.log('/pets UPDATE error:', error);
+                alert('unable to update pet to checked in');
+            });
+    };
 
-vm.hideCheckIn = function(id){
-    console.log('update pet to checked out', id);
-    let data = {check_in: false};
-    $http.put('/pets/' + id, data)
-    .then(function(response){
-        getPets();
-    }).catch(function(error){
-        console.log('/pets UPDATE error:', error);
-        alert('unable to update pet to checked in');
-    });
-}
+    vm.hideCheckIn = function (id) {
+        console.log('update pet to checked out', id);
+        let data = { check_in: false };
+        $http.put('/pets/' + id, data)
+            .then(function (response) {
+                getPets();
+            }).catch(function (error) {
+                console.log('/pets UPDATE error:', error);
+                alert('unable to update pet to checked in');
+            });
+    }
 
 
 });// end PetsController
