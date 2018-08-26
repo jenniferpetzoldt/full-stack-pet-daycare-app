@@ -9,7 +9,8 @@ router.get('/', function (req, res) {
     const query = `SELECT  "pets"."id", "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed" as "pet_breed", 
                     "pets"."color" as "pet_color", "pets"."check_in" 
                     FROM "owners" JOIN "pets"  
-                    ON "owners"."id" = "pets"."owner_id";`;
+                    ON "owners"."id" = "pets"."owner_id" 
+                    ORDER BY "pet_name"`;
     pool.query(query).then((results) => {
         console.log('pets GET results', results.rows);
         res.send(results.rows);

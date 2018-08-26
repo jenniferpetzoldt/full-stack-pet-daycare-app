@@ -1,4 +1,4 @@
-let myApp = angular.module('myApp', ['ngRoute']);
+let myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 //Configuring routes to views
 myApp.config(function($routeProvider){

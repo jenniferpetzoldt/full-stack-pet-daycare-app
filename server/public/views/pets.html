@@ -5,8 +5,8 @@
         <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
         <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
         <select ng-model="pc.petToAdd.owner_id">
-           <!-- adds blank option above pet owners names -->
-            <option></option> 
+            <!-- adds blank option above pet owners names -->
+            <option></option>
             <option ng-repeat="x in pc.owners" value="{{x.id}}">{{x.name}}</option>
         </select>
         <input type="submit" value="submit">
@@ -20,8 +20,10 @@
             <th>Pet</th>
             <th>Breed</th>
             <th>Color</th>
-            <th>Checked In</th>
-            <th>Actions</th>
+            <th>Status</th>
+            <th>Check In</th>
+            <th>Check Out</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             <tr ng-repeat="pet in pc.pets">
@@ -41,9 +43,13 @@
                     {{pet.check_in}}
                 </td>
                 <td>
-                    <button ng-click="pc.deletePet(pet.id)">Delete</button>
-                    <button ng-click="pc.showCheckIn(pet.id)">Check In</button>
-                    <button ng-click="pc.hideCheckIn(pet.id)">Check Out</button>
+                    <md-button class="md-raised" ng-click="pc.showCheckIn(pet.id)">Check In</button>
+                </td>
+                <td>
+                    <md-button class="md-raised" ng-click="pc.hideCheckIn(pet.id)">Check Out</button>
+                </td>
+                <td>
+                    <md-button class="md-raised" ng-click="pc.deletePet(pet.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

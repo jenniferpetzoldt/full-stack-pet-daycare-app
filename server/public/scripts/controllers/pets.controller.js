@@ -3,6 +3,7 @@ myApp.controller('PetsController', function ($http) {
 
     vm.pets = [];
     vm.owners = [];
+    
 
     getPets();
     getOwners();
@@ -72,7 +73,9 @@ myApp.controller('PetsController', function ($http) {
 
     vm.showCheckIn = function (id) {
         console.log('update pet to checked in', id);
-        let data = { check_in: true };
+        let data = { check_in: 'In' };
+       
+            console.log('error');
         $http.put('/pets/' + id, data)
             .then(function (response) {
                 getPets();
@@ -84,7 +87,7 @@ myApp.controller('PetsController', function ($http) {
 
     vm.hideCheckIn = function (id) {
         console.log('update pet to checked out', id);
-        let data = { check_in: false };
+        let data = { check_in: 'Out' };
         $http.put('/pets/' + id, data)
             .then(function (response) {
                 getPets();
