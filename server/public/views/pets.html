@@ -1,57 +1,91 @@
 <div>
-    <h2>Add Pet</h2>
-    <form ng-submit="pc.addToPets(pc.petToAdd)">
-        <input type="text" placeholder="Pet Name" ng-model="pc.petToAdd.name">
-        <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
-        <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
-        <select ng-model="pc.petToAdd.owner_id">
-            <!-- adds blank option above pet owners names -->
-            <option></option>
-            <option ng-repeat="x in pc.owners" value="{{x.id}}">{{x.name}}</option>
-        </select>
-        <input type="submit" value="submit">
-    </form>
+    <h2>Guest Registration</h2>
+
+    <div layout="column" ng-cloak class="md-inline-form">
+        <md-content layout-padding>
+            <div>
+                <form name="petForm">
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Pet Name</label>
+                            <input ng-model="pc.petToAdd.name">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Breed</label>
+                            <input ng-model="pc.petToAdd.breed">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Coloring</label>
+                            <input ng-model="pc.petToAdd.color">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Owner</label>
+                            <md-select ng-model="pc.petToAdd.owner_id">
+                                <md-option ng-repeat="x in pc.owners" value="{{x.id}}">
+                                    {{x.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Check-In date</label>
+                            <md-datepicker ng-model="pc.petToAdd.in_date"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Check-Out date</label>
+                            <md-datepicker ng-model="pc.petToAdd.in_date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Notes</label>
+                            <textarea ng-model="pc.petToAdd.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
+            </div>
+            </form>
+    </div>
+    </md-content>
+
 </div>
-<div>
-    <h2>History</h2>
-    <table>
-        <thead>
-            <th>Owner</th>
-            <th>Pet</th>
-            <th>Breed</th>
-            <th>Color</th>
-            <th>Status</th>
-            <th>Check In</th>
-            <th>Check Out</th>
-            <th>Delete</th>
-        </thead>
-        <tbody>
-            <tr ng-repeat="pet in pc.pets">
-                <td>
-                    {{pet.owner_name}}
-                </td>
-                <td>
-                    {{pet.pet_name}}
-                </td>
-                <td>
-                    {{pet.pet_breed}}
-                </td>
-                <td>
-                    {{pet.pet_color}}
-                </td>
-                <td>
-                    {{pet.check_in}}
-                </td>
-                <td>
-                    <md-button class="md-raised" ng-click="pc.showCheckIn(pet.id)">Check In</button>
-                </td>
-                <td>
-                    <md-button class="md-raised" ng-click="pc.hideCheckIn(pet.id)">Check Out</button>
-                </td>
-                <td>
-                    <md-button class="md-raised" ng-click="pc.deletePet(pet.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<form ng-submit="pc.addToPets(pc.petToAdd)">
+    <input type="text" placeholder="Pet Name" ng-model="pc.petToAdd.name">
+    <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
+    <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
+    <select ng-model="pc.petToAdd.owner_id">
+        <!-- adds blank option above pet owners names -->
+        <option></option>
+        <option ng-repeat="x in pc.owners" value="{{x.id}}">{{x.name}}</option>
+    </select>
+    <input type="submit" value="submit">
+</form>
+</div>
+<div ng-cloak ng-repeat="pet in pc.pets">
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{pet.pet_name}}</span>
+                        <span class="md-subhead">Owner: {{pet.owner_name}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media"></div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-content>
+                    <p>Breed: {{pet.pet_breed}}</p>
+                    <p>Color: {{pet.pet_color}}</p>
+                    <p>Checked-In: {{pet.check_in}}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="pc.showCheckIn(pet.id)">Check In</md-button>
+                    <md-button ng-click="pc.hideCheckIn(pet.id)">Check Out</md-button>
+                    <md-button ng-click="pc.deletePet(pet.id)">Delete</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+</div>
 </div>
