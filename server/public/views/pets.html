@@ -1,6 +1,6 @@
 <div>
-    <h2>Guest Registration</h2>
-
+    <h2>Pet Registration</h2>
+    <!-- start petForm -->
     <div layout="column" ng-cloak class="md-inline-form">
         <md-content layout-padding>
             <div>
@@ -19,6 +19,7 @@
                             <input ng-model="pc.petToAdd.color">
                         </md-input-container>
                     </div>
+
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Owner</label>
@@ -37,47 +38,42 @@
                             <md-datepicker ng-model="pc.petToAdd.in_date"></md-datepicker>
                         </md-input-container>
                     </div>
+
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Notes</label>
-                            <textarea ng-model="pc.petToAdd.notes" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                            <textarea ng-model="pc.petToAdd.notes" md-maxlength="100" rows="2" md-select-on-focus></textarea>
                         </md-input-container>
                     </div>
+                    <md-button type="submit">Submit</md-button>
+                </form>
             </div>
-            </form>
+        </md-content>
     </div>
-    </md-content>
-
 </div>
-<form ng-submit="pc.addToPets(pc.petToAdd)">
-    <input type="text" placeholder="Pet Name" ng-model="pc.petToAdd.name">
-    <input type="text" placeholder="Pet Color" ng-model="pc.petToAdd.color">
-    <input type="text" placeholder="Pet Breed" ng-model="pc.petToAdd.breed">
-    <select ng-model="pc.petToAdd.owner_id">
-        <!-- adds blank option above pet owners names -->
-        <option></option>
-        <option ng-repeat="x in pc.owners" value="{{x.id}}">{{x.name}}</option>
-    </select>
-    <input type="submit" value="submit">
-</form>
-</div>
-<div ng-cloak ng-repeat="pet in pc.pets">
-    <md-content class="md-padding" layout-xs="column" layout="row">
-        <div flex-xs flex-gt-xs="50" layout="column">
-            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+<!-- End petForm -->
+<!-- Start petCards -->
+<h2>History</h2>
+<div>
+    <md-content>
+        <div layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+            <md-card ng-repeat="pet in pc.pets">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{pet.pet_name}}</span>
                         <span class="md-subhead">Owner: {{pet.owner_name}}</span>
+                        <span class="md-subhead">Breed: {{pet.pet_breed}}</span>
+                        <span class="md-subhead">Coloring: {{pet.pet_color}}</span>
+                        <span class="md-subhead">Checked-In: {{pet.check_in}}</span>
+                        <span class="md-subhead">Check-Out: {{}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media"></div>
                     </md-card-title-media>
                 </md-card-title>
                 <md-card-content>
-                    <p>Breed: {{pet.pet_breed}}</p>
-                    <p>Color: {{pet.pet_color}}</p>
-                    <p>Checked-In: {{pet.check_in}}</p>
+                    <p>Notes: {{}}</p>
+                   
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
                     <md-button ng-click="pc.showCheckIn(pet.id)">Check In</md-button>
@@ -88,4 +84,4 @@
         </div>
     </md-content>
 </div>
-</div>
+<!-- End petCards -->
