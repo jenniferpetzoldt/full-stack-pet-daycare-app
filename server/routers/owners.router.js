@@ -23,8 +23,8 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     const ownerToAdd = req.body;
     console.log('In owner POST route:', req.body);
-    const query = `INSERT INTO "owners" ("name") VALUES ($1);`;
-    pool.query(query, [ownerToAdd.name])
+    const query = `INSERT INTO "owners" ("name", "email") VALUES ($1, $2);`;
+    pool.query(query, [ownerToAdd.name, ownerToAdd.email])
         .then(() => {
             res.sendStatus(201);
         }).catch((error) => {

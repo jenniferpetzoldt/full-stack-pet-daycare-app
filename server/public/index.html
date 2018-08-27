@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+    <link rel="stylesheet" href="styles/styles.css">
     <script src="vendors/angular.min.js"></script>
     <script src="vendors/angular-route.js"></script>
 
@@ -25,19 +25,25 @@
 
 <body ng-app="myApp">
     <div calss="container">
-        <header>
+        <header class="md-primary" >
             <h1>Waggs and Wiggles</h1>
-
         </header>
+        <div layout layout-align="center">
         <md-content class="md-padding">
-            <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
                 <md-nav-item md-nav-href="/" name="home">Home</md-nav-item>
                 <md-nav-item md-nav-href="#!/owners" name="owners">Owners</md-nav-item>
                 <md-nav-item md-nav-href="#!/pets" name="pets">Pets</md-nav-item>
             </md-nav-bar>
         </md-content>
+    </div>
         <ng-view></ng-view>
     </div>
 </body>
-
+<footer>
+<p>Our mailing address is:</p>
+<p>Wags and Wiggles</p>
+<p>2416 Blaisdell Ave</p>
+<p>Minneapolis, MN 55404</p>
+</footer>
 </html>

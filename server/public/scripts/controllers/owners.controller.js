@@ -20,6 +20,7 @@ myApp.controller('OwnersController', function ($http) {
 
     //POST route to add owner data to database
     vm.addToOwners = function (ownerToAdd) {
+       console.log(ownerToAdd);
         $http({
             method: 'POST',
             url: '/owners',

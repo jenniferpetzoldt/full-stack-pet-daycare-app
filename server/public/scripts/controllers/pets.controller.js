@@ -48,6 +48,7 @@ myApp.controller('PetsController', function ($http) {
         }).then(function (response) {
             console.log('/pets POST success:', response);
             getPets();// will update the view with current pet information in database
+            clearInputs();
             getOwners();
         }).catch(function (error) {
             console.log('/pets POST error:', error);
@@ -97,5 +98,12 @@ myApp.controller('PetsController', function ($http) {
             });
     }
 
+    function clearInputs(){
+        vm.petToAdd.name = '';
+        vm.petToAdd.breed = '';
+        vm.petToAdd.color = '';
+        vm.petToAdd.owner_id = '';
+        vm.petToAdd.notes = ''
+    };
 
 });// end PetsController

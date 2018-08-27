@@ -6,8 +6,8 @@ const pool = require('../modules/pool.js');
 //GET route to pull pet data from the pets table within the database
 router.get('/', function (req, res) {
     console.log('in pet GET route');
-    const query = `SELECT  "pets"."id", "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed" as "pet_breed", 
-                    "pets"."color" as "pet_color", "pets"."check_in" 
+    const query = `SELECT  "pets"."id", "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed", 
+                    "pets"."color", "pets"."check_in", "pets"."notes" 
                     FROM "owners" JOIN "pets"  
                     ON "owners"."id" = "pets"."owner_id" 
                     ORDER BY "pet_name"`;
@@ -52,8 +52,8 @@ router.delete('/:id', function (req, res) {
 router.post('/', function (req, res) {
     const petToAdd = req.body;
     console.log('In pet POST route: ', req.body);
-    const query = `INSERT INTO "pets" ("name", "color", "breed", "check_in", "owner_id") VALUES ($1, $2, $3, $4, $5);`;
-    pool.query(query, [petToAdd.name, petToAdd.color, petToAdd.breed, petToAdd.check_in, petToAdd.owner_id])
+    const query = `INSERT INTO "pets" ("name", "breed", "color", "check_in", "owner_id", "notes") VALUES ($1, $2, $3, $4, $5, $6);`;
+    pool.query(query, [petToAdd.name, petToAdd.breed, petToAdd.color, petToAdd.check_in, petToAdd.owner_id, petToAdd.notes])
         .then(() => {
             res.sendStatus(201);
         }).catch((error) => {

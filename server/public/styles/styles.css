@@ -1,57 +1,56 @@
 * {
-    box-sizing: boarder-box;
-}
-
-button {
-    background-color: #F6DDDF;
-    border-radius: 3px;
-    color: #5F6F75;
-}
-
-input {
-    margin-bottom: 2%;
+    box-sizing: border-box;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
-    background-color: #EEC9C8;
-    color: #5F6F75;
+    color: rgb(59, 83, 114);
+    background-color: rgb(221, 217, 213);
 }
 
 h1 {
     text-align: center;
-    font-size: 350%
+    font-size: 300%;
 }
-table {
-    width: 80%;
+
+h2 {
+    margin-left: 10%;
+}
+
+header {
+    height: 60px;
+}
+
+footer {
+    margin: 10px;
 }
 
 form {
+    width: 80%;
+    margin-left: 10%;
+}
+
+img {
     width: 60%;
+    margin-left: 20%;
+    
+}
+md-content {
+    background-color: rgb(221, 217, 213);
+}
+
+md-nav-item {
+    text-align: center;
+}
+
+md-card {
+    background-color: linen;
 }
 
 p {
     text-align: center;
-}
-td, th{
-    width: 30%;
-    text-align: center;
-    word-spacing: 2px;
-    margin-left: 33%;
-    border-bottom: 1px solid #DF9C9D;
-}
-
-thead {
-    text-decoration: underline;
-    font-size: 140%;
-}
-
-tr:hover {
-    background-color: #DF9C9D;
-}
-
-.strike {
-    text-decoration: line-through;
+    padding: 0;
+    margin: 0;
 }
