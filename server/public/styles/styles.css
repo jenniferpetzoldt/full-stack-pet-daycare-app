@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 footer {
     margin: 10px;
 }
@@ -18,7 +17,7 @@ html, body {
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
     color: #455A64;
-   background-color: #ECEEEF;
+    background-color: #ECEEEF;
 }
 
 h1 {
@@ -31,12 +30,10 @@ h2 {
     font-size: 200%;
 }
 
-
 #home-img {
     width: 60%;
     margin-left: 20%;  
 }
-
 
 md-content {
     background-color: #ECEEEF;
@@ -44,8 +41,8 @@ md-content {
 
 md-nav-item {
     text-align: center;
-}
 
+}
 
 p {
     text-align: center;
@@ -60,6 +57,7 @@ table {
 
 td, th{
     width: 30%;
+    font-size: 150%;
     text-align: center;
     word-spacing: 2px;
     border-bottom: 1px solid #455A64;
