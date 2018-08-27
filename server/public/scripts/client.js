@@ -18,6 +18,6 @@ myApp.config(function($routeProvider){
 
 myApp.config(function($mdThemingProvider){
     $mdThemingProvider.theme('default')
-    .primaryPalette('blue-grey')
-    .accentPalette('amber');
+    .primaryPalette('teal')
+    .accentPalette('blue-grey');
 });

@@ -10,6 +10,7 @@ footer {
 form {
     width: 80%;
     margin-left: 10%;
+    font-weight: bold;
 }
 
 html, body {
@@ -17,7 +18,7 @@ html, body {
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
     color: #455A64;
-    background-color: rgb(169, 186, 194);
+   background-color: #ECEEEF;
 }
 
 h1 {
@@ -37,12 +38,8 @@ h2 {
 }
 
 
-md-card {
-    background-color: rgb(199, 202, 202);
-}
-
 md-content {
-    background-color: rgb(169, 186, 194);
+    background-color: #ECEEEF;
 }
 
 md-nav-item {
