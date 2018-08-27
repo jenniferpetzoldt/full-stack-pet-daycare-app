@@ -16,7 +16,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
-    color: #607D8B;
+    color: #455A64;
     background-color: rgb(169, 186, 194);
 }
 
@@ -66,10 +66,13 @@ td, th{
     text-align: center;
     word-spacing: 2px;
     border-bottom: 1px solid #455A64;
+    
 }
 
 thead {
     font-size: 140%;
+    font-weight: bold;
+    color: #455A64;
 }
 
 tr:hover {
