@@ -1,11 +1,10 @@
-myApp.controller('OwnersController', function ($http) {
+myApp.controller('OwnersController', function ($http, $mdDialog) {
     const vm = this;
     vm.owners = [];
     getOwners();
 
     //GET route to server to retieve owner data from database
     function getOwners() {
-        console.log('in getOwners');
         $http({
             method: 'GET',
             url: '/owners'
@@ -20,7 +19,6 @@ myApp.controller('OwnersController', function ($http) {
 
     //POST route to add owner data to database
     vm.addToOwners = function (ownerToAdd) {
-       console.log(ownerToAdd);
         $http({
             method: 'POST',
             url: '/owners',
@@ -36,8 +34,6 @@ myApp.controller('OwnersController', function ($http) {
 
     //DELETE route to remove an owner from the owners table within the databse
     vm.deleteOwner = function (id) {
-        console.log('in delete owner');
-        //add warning about deleting and owner with pets listed
         $http({
             method: 'DELETE',
             url: '/owners/' + id
@@ -46,8 +42,25 @@ myApp.controller('OwnersController', function ($http) {
             getOwners();
         }).catch(function(error){
             console.log('/owners DELETE error:', error);
-            alert('This owner has pets and should not be deleted.');
+            vm.showDeleteAlert();
         });//end DELETE route
     }//end deleteOwner
 
+
+    vm.showDeleteAlert = function() {
+        // Appending dialog to document.body to cover sidenav in docs app
+        // Modal dialogs should fully cover application
+        // to prevent interaction outside of dialog
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Request to delete owner:')
+            .textContent('You can not delete an owner with registered pets.')
+            .ariaLabel('Delete Owner')
+            .ok('Got it!')
+            .targetEvent()
+        );
+      };
+ 
 });// end OwnersController

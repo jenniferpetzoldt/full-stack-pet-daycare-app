@@ -38,8 +38,6 @@ router.delete('/:id', function (req, res) {
     console.log('In owner DELETE route', req.params.id);
     const id = req.params.id;
     const query = ` DELETE FROM "owners" WHERE "id" = ($1);`;
-
-                    // DELETE FROM "pets" WHERE "pets"."owner_id" =($1);
     pool.query(query, [id])
         .then((results) => {
             console.log(results);

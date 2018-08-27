@@ -18,9 +18,6 @@
                             <label>Coloring</label>
                             <input ng-model="pc.petToAdd.color">
                         </md-input-container>
-                    </div>
-
-                    <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Owner</label>
                             <md-select ng-model="pc.petToAdd.owner_id">
@@ -29,23 +26,16 @@
                                 </md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container class="md-block" flex-gt-xs>
-                            <label>Check-In date</label>
-                            <md-datepicker ng-model="pc.petToAdd.in_date"></md-datepicker>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-xs>
-                            <label>Check-Out date</label>
-                            <md-datepicker ng-model="pc.petToAdd.in_date"></md-datepicker>
-                        </md-input-container>
                     </div>
-
+                       
+<!-- add image url selector -->
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Notes</label>
                             <textarea ng-model="pc.petToAdd.notes" md-maxlength="100" rows="2" md-select-on-focus></textarea>
                         </md-input-container>
                     </div>
-                    <md-button type="submit">Submit</md-button>
+                    <md-button class="md-primary" type="submit">Submit</md-button>
                 </form>
             </div>
         </md-content>
@@ -60,16 +50,12 @@
             <md-card ng-repeat="pet in pc.pets">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{pet.pet_name}}</span>
+                        <span class="md-headline" style="text-align: center">{{pet.pet_name}}</span>
                         <span class="md-subhead">Owner: {{pet.owner_name}}</span>
                         <span class="md-subhead">Breed: {{pet.breed}}</span>
                         <span class="md-subhead">Coloring: {{pet.color}}</span>
-                        <span class="md-subhead">Checked-In: {{pet.check_in}}</span>
-                        <span class="md-subhead">Check-Out: {{}}</span>
+                        <span class="md-subhead">Status: {{pet.check_in}}</span>
                     </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media"></div>
-                    </md-card-title-media>
                 </md-card-title>
                 <md-card-content>
                     <span>Notes: {{pet.notes}}</span> 

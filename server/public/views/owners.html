@@ -14,7 +14,7 @@
                             <label>Email</label>
                             <input type="text" ng-model="oc.ownerToAdd.email">
                         </md-input-container>
-                        <md-button type="submit">Submit</md-button>
+                        <md-button class="md-primary" type="submit">Submit</md-button>
                     </div>
                 </form>
             </div>
@@ -25,25 +25,30 @@
     <div>
         <h2>Owners</h2>
         <!-- start ownerCards -->
-        <div>
-            <md-content>
-                <div layout="row" layout-xs="column" layout-align="center center" layout-wrap>
-                    <md-card ng-repeat="owner in oc.owners">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{owner.name}}</span>
-                                <span class="md-subhead">Email {{}}</span>
-                                <span class="md-subhead">Number of Pets {{owner.count}}</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-actions layout="row" layout-align="end center">
-                            <md-button >Edit</md-button>
-                            <md-button ng-click="oc.deleteOwner(owner.id)">Delete</md-button>
-                        </md-card-actions>
-                    </md-card>
-                </div>
-            </md-content>
-        </div>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Number of Pets</th>
+                <th>Email Address</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="owner in oc.owners">
+                    <td>
+                        {{owner.name}}
+                    </td>
+                    <td>
+                        {{owner.count}}
+                    </td>
+                    <td>
+                        {{owner.email}}
+                    </td>
+                    <td>
+                        <md-button class="md-warn" ng-click="oc.deleteOwner(owner.id)">Delete</md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <!-- end ownerCards -->
     </div>
 </div>

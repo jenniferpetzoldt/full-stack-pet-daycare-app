@@ -20,30 +20,35 @@
     <script src="scripts/controllers/owners.controller.js"></script>
     <script src="scripts/controllers/pets.controller.js"></script>
 
-    <title>Wags and Wiggles</title>
+    <title>Wags 'N Wiggles</title>
 </head>
 
 <body ng-app="myApp">
     <div calss="container">
-        <header class="md-primary" >
-            <h1>Waggs and Wiggles</h1>
+        <header class="md-primary">
+            <h1>
+                <img id="logo-img" ng-src="images/dog-playing-silhouette-1.png" alt="dog playing silhouette" style="width: 6%">
+                Waggs 'N Wiggles
+                <img id="logo-img" ng-src="images/dog-playing-silhouette.png" alt="dog playing silhouette" style="width: 6%">
+            </h1>
         </header>
         <div layout layout-align="center">
-        <md-content class="md-padding">
-            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-                <md-nav-item md-nav-href="/" name="home">Home</md-nav-item>
-                <md-nav-item md-nav-href="#!/owners" name="owners">Owners</md-nav-item>
-                <md-nav-item md-nav-href="#!/pets" name="pets">Pets</md-nav-item>
-            </md-nav-bar>
-        </md-content>
-    </div>
+            <md-content class="md-padding">
+                <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                    <md-nav-item md-nav-href="/" name="home">Home</md-nav-item>
+                    <md-nav-item md-nav-href="#!/owners" name="owners">Owners</md-nav-item>
+                    <md-nav-item md-nav-href="#!/pets" name="pets">Pets</md-nav-item>
+                </md-nav-bar>
+            </md-content>
+        </div>
         <ng-view></ng-view>
     </div>
 </body>
 <footer>
-<p>Our mailing address is:</p>
-<p>Wags and Wiggles</p>
-<p>2416 Blaisdell Ave</p>
-<p>Minneapolis, MN 55404</p>
+    <p>Our mailing address is:</p>
+    <p>Wags 'N Wiggles</p>
+    <p>2416 Blaisdell Ave</p>
+    <p>Minneapolis, MN 55404</p>
 </footer>
+
 </html>
