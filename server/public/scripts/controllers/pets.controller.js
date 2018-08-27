@@ -1,10 +1,8 @@
 myApp.controller('PetsController', function ($http) {
     const vm = this;
-
     vm.pets = [];
     vm.owners = [];
-
-
+    //functions called on page load to populate views with existing data
     getPets();
     getOwners();
 
@@ -68,6 +66,7 @@ myApp.controller('PetsController', function ($http) {
         });//end DELETE route
     };//end deletePet
 
+    //Show's pet's status as checked-in when check-in button is clicked
     vm.showCheckIn = function (id) {
         let data = { check_in: 'In' };
         $http.put('/pets/' + id, data)
@@ -78,7 +77,7 @@ myApp.controller('PetsController', function ($http) {
                 alert('unable to update pet to checked in');
             });
     };
-
+    //shows pet's status as checked out when check-out button is clicked
     vm.hideCheckIn = function (id) {
         let data = { check_in: 'Out' };
         $http.put('/pets/' + id, data)
