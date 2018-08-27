@@ -25,6 +25,7 @@ myApp.controller('OwnersController', function ($http, $mdDialog) {
             data: ownerToAdd
         }).then(function (response) {
             console.log('/owner POST success:', response);
+            clearInputs();//empties the input fields
             getOwners(); //updates the owner view with current owner information
         }).catch(function (error) {
             console.log('/owners POST error:', error);
@@ -62,5 +63,10 @@ myApp.controller('OwnersController', function ($http, $mdDialog) {
             .targetEvent()
         );
       };
+
+      function clearInputs(){
+        vm.ownerToAdd.name = '';
+        vm.ownerToAdd.email = '';
+    };
  
 });// end OwnersController

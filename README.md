@@ -21,17 +21,22 @@ Steps to get the develoment environment running.
 4. Open within your code editing tool.
 
 ### Completed Features
-- [ ] Separate views for registered pets and registered owners
-- [ ] 
-- [ ] 
-    - [ ] 
-    - [ ] 
-- [ ] 
-- [ ] 
+- [X] Separate views for registered pets and registered owners
+- [X] Form to input new pet and new owner information
+- [X] Pet and owner data persistant within database
+- [X] Pets can toggle between checked-in and checked-out
+- [X] Owner contact information stored on database and owner view
+- [X] Pets and Owners can be deleted from the page and database
+    - [X] Alert when deleting an owner with pets registered
+- [X] Number of pets registred under each owner tracked within owner view
 
 ### Next Steps
 Features to be added:
-- [ ] 
+- [ ] Include date and time of check-in and check-out
+- [ ] Maintain history of visits
+- [ ] Incorperate more views to decrease need for scrolling
+- [ ] Upload images of pets and owners
+- [ ] Edit pets and owners information
 - [ ] Sorting of registered pets
 - [ ] Log-Ins
     - [ ] Administrative
