@@ -3,14 +3,13 @@ myApp.controller('PetsController', function ($http) {
 
     vm.pets = [];
     vm.owners = [];
-    
+
 
     getPets();
     getOwners();
 
     //GET route to pull pets from the pets table within the database
     function getPets() {
-        console.log('in getPets');
         $http({
             method: 'GET',
             url: '/pets'
@@ -25,7 +24,6 @@ myApp.controller('PetsController', function ($http) {
 
     //GET route to server to retieve owner data from database
     function getOwners() {
-        console.log('in getOwners');
         $http({
             method: 'GET',
             url: '/pets/owners'
@@ -40,7 +38,6 @@ myApp.controller('PetsController', function ($http) {
 
     //POST route to add pets to pets table within the database
     vm.addToPets = function (petToAdd) {
-        console.log('in addToPets');
         $http({
             method: 'POST',
             url: '/pets',
@@ -48,8 +45,8 @@ myApp.controller('PetsController', function ($http) {
         }).then(function (response) {
             console.log('/pets POST success:', response);
             getPets();// will update the view with current pet information in database
-            clearInputs();
-            getOwners();
+            clearInputs();//clears input fields after submit button clicked
+            getOwners();// repopulates DOM with updated data
         }).catch(function (error) {
             console.log('/pets POST error:', error);
             alert('unable to add pet');
@@ -58,14 +55,13 @@ myApp.controller('PetsController', function ($http) {
 
     //DELETE route to remove a pet from the pets table within the database
     vm.deletePet = function (id) {
-        console.log('in deletePet', id);
         $http({
             method: 'DELETE',
             url: '/pets/' + id //the pet with matching id will be deleted from database
         }).then(function (response) {
             console.log('/pets DELETE success:', response);
             getPets();// will update the view with current pet information in database
-            getOwners();
+            getOwners();//updates DOM with accurate data
         }).catch(function (error) {
             console.log('/pets DELETE error:', error);
             alert('unable to delete pet');
@@ -73,10 +69,7 @@ myApp.controller('PetsController', function ($http) {
     };//end deletePet
 
     vm.showCheckIn = function (id) {
-        console.log('update pet to checked in', id);
         let data = { check_in: 'In' };
-       
-            console.log('error');
         $http.put('/pets/' + id, data)
             .then(function (response) {
                 getPets();
@@ -87,7 +80,6 @@ myApp.controller('PetsController', function ($http) {
     };
 
     vm.hideCheckIn = function (id) {
-        console.log('update pet to checked out', id);
         let data = { check_in: 'Out' };
         $http.put('/pets/' + id, data)
             .then(function (response) {
@@ -98,7 +90,7 @@ myApp.controller('PetsController', function ($http) {
             });
     }
 
-    function clearInputs(){
+    function clearInputs() {
         vm.petToAdd.name = '';
         vm.petToAdd.breed = '';
         vm.petToAdd.color = '';

@@ -4,8 +4,8 @@ const router = express.Router();
 const pool = require('../modules/pool.js');
 
 //GET route to pull pet data from the pets table within the database
+//as well as the owner name
 router.get('/', function (req, res) {
-    console.log('in pet GET route');
     const query = `SELECT  "pets"."id", "owners"."name" as "owner_name", "pets"."name" as "pet_name", "pets"."breed", 
                     "pets"."color", "pets"."check_in", "pets"."notes" 
                     FROM "owners" JOIN "pets"  
@@ -20,9 +20,8 @@ router.get('/', function (req, res) {
     });
 });// end GET route
 
-//GET
+//GET to pull all owner data from database
 router.get('/owners', function (req, res) {
-    console.log('in owner GET route');
     const query = 'SELECT * FROM "owners";';
     pool.query(query).then((results) => {
         console.log('owners GET results', results.rows);
@@ -35,7 +34,6 @@ router.get('/owners', function (req, res) {
 
 //DELETE route to remoeve a pet from the pets table within the database
 router.delete('/:id', function (req, res) {
-    console.log('In pet DELETE route');
     const id = req.params.id;
     const query = 'DELETE FROM "pets" WHERE "id" = ($1);';
     pool.query(query, [id])
@@ -48,10 +46,9 @@ router.delete('/:id', function (req, res) {
         });
 });//end DELETE route
 
-//POST route to add pet data to the pets table within the database
+//POST route to add new pet data to the pets table within the database
 router.post('/', function (req, res) {
     const petToAdd = req.body;
-    console.log('In pet POST route: ', req.body);
     const query = `INSERT INTO "pets" ("name", "breed", "color", "check_in", "owner_id", "notes") VALUES ($1, $2, $3, $4, $5, $6);`;
     pool.query(query, [petToAdd.name, petToAdd.breed, petToAdd.color, petToAdd.check_in, petToAdd.owner_id, petToAdd.notes])
         .then(() => {
@@ -63,19 +60,18 @@ router.post('/', function (req, res) {
 });// End POST route
 
 //PUT route to update pet's check in status
-router.put('/:id', (req, res)=>{
-    console.log('UPDATE', req.params.id);
+router.put('/:id', (req, res) => {
     const petToUpdate = req.body;
     const id = req.params.id;
     const query = `UPDATE "pets" SET "check_in" = ($1) WHERE "id" = ($2);`;
     pool.query(query, [petToUpdate.check_in, id])
-    .then((results)=>{
-        console.log('check-in updated', results);
-        res.sendStatus(200);
-    }).catch((error)=>{
-        console.log('Error with update', error);
-        res.sendStatus(500);
-    });
+        .then((results) => {
+            console.log('check-in updated', results);
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('Error with update', error);
+            res.sendStatus(500);
+        });
 });// End PUT route
 
 module.exports = router;

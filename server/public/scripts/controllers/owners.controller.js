@@ -38,35 +38,33 @@ myApp.controller('OwnersController', function ($http, $mdDialog) {
         $http({
             method: 'DELETE',
             url: '/owners/' + id
-        }).then(function(response){
+        }).then(function (response) {
             console.log('/owners DELETE success:', response);
             getOwners();
-        }).catch(function(error){
+        }).catch(function (error) {
             console.log('/owners DELETE error:', error);
             vm.showDeleteAlert();
         });//end DELETE route
     }//end deleteOwner
 
 
-    vm.showDeleteAlert = function() {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
+    vm.showDeleteAlert = function () {
+        // Alert for when user attempts to delete an owner who has pets registered to them
         $mdDialog.show(
-          $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title('Request to delete owner:')
-            .textContent('You can not delete an owner with registered pets.')
-            .ariaLabel('Delete Owner')
-            .ok('Got it!')
-            .targetEvent()
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Request to delete owner:')
+                .textContent('You can not delete an owner with registered pets.')
+                .ariaLabel('Delete Owner')
+                .ok('Got it!')
+                .targetEvent()
         );
-      };
+    };
 
-      function clearInputs(){
+    function clearInputs() {
         vm.ownerToAdd.name = '';
         vm.ownerToAdd.email = '';
     };
- 
+
 });// end OwnersController

@@ -3,9 +3,8 @@ const router = express.Router();
 
 const pool = require('../modules/pool.js');
 
-//GET
+//GET route to gather the owner data as well as how many pets are linked to that owner
 router.get('/', function (req, res) {
-    console.log('in owner GET route');
     const query = `SELECT "owners"."id", "owners"."name", "owners"."email", COUNT("pets"."owner_id") 
                     FROM "owners" LEFT JOIN "pets" ON "owners"."id" = "pets"."owner_id" 
                     GROUP BY "owners"."id";`;
@@ -19,10 +18,9 @@ router.get('/', function (req, res) {
 });// End GET route
 
 
-//POST
+//POST route to add new owner to database
 router.post('/', function (req, res) {
     const ownerToAdd = req.body;
-    console.log('In owner POST route:', req.body);
     const query = `INSERT INTO "owners" ("name", "email") VALUES ($1, $2);`;
     pool.query(query, [ownerToAdd.name, ownerToAdd.email])
         .then(() => {
@@ -33,10 +31,11 @@ router.post('/', function (req, res) {
         });
 });// End POST route
 
-//DELETE
+//DELETE route to remove owner from database
 router.delete('/:id', function (req, res) {
-    console.log('In owner DELETE route', req.params.id);
     const id = req.params.id;
+    // will only delete if there are no pets linked to the owner
+    // a separate query would need to be run first to delete the pets associated with the owner
     const query = ` DELETE FROM "owners" WHERE "id" = ($1);`;
     pool.query(query, [id])
         .then((results) => {
